@@ -1,0 +1,21 @@
+.title {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.container {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mat-card {
+  width: 30rem;
+}
+
+.mat-list-item {
+  height: auto !important;
+}

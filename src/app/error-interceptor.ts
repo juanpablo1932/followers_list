@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
@@ -21,12 +21,12 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
-        if (err.status === 400) {
+        if (err.status === 404) {
           this._snackBar.open('Bad Request', 'Close', {
-            duration: 2000,
+            duration: 5000,
           });
         }
-        return new Observable<HttpEvent<unknown>>();
+        return throwError(() => err);
       })
     );
   }
